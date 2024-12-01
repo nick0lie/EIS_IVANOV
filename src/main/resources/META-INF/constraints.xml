@@ -1,0 +1,40 @@
+<constraint-mappings xmlns="http://jboss.org/xml/ns/javax/validation/mapping"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd"
+                     version="1.1">
+    <bean class="Lab4_Validation.Model.XmlValidatedPark" ignore-annotations="false">
+        <field name="name">
+            <constraint annotation="jakarta.validation.constraints.NotNull">
+                <message>Название парка не должно быть пустым</message>
+            </constraint>
+            <constraint annotation="jakarta.validation.constraints.Pattern">
+                <message>Название парка должно содержать только буквы и пробелы</message>
+                <element name="regexp">^[A-Za-zА-Яа-яЁё\\s]+$</element>
+            </constraint>
+        </field>
+        <field name="address">
+            <constraint annotation="jakarta.validation.constraints.NotNull">
+                <message>Адрес не должен быть пустым</message>
+            </constraint>
+        </field>
+        <field name="numberOfTrees">
+            <constraint annotation="jakarta.validation.constraints.Min">
+                <message>Минимальное количество деревьев должно быть 1</message>
+                <element name="value">1</element>
+            </constraint>
+            <constraint annotation="jakarta.validation.constraints.Max">
+                <message>Максимальное количество деревьев — 10,000</message>
+                <element name="value">10000</element>
+            </constraint>
+        </field>
+        <field name="parkType">
+            <constraint annotation="jakarta.validation.constraints.NotNull">
+                <message>Тип парка не должен быть пустым</message>
+            </constraint>
+            <constraint annotation="jakarta.validation.constraints.Pattern">
+                <message>Тип парка должен быть: Национальный, Городской или Природный</message>
+                <element name="regexp">^(Национальный|Городской|Природный)$</element>
+            </constraint>
+        </field>
+    </bean>
+</constraint-mappings>
