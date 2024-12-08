@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.Mapper.ParkMapper">
+
+    <insert id="insertPark" parameterType="com.example.Model.Park">
+        INSERT INTO station_parks (name, location, capacity, is_open)
+        VALUES (#{name}, #{location}, #{capacity}, #{isOpen})
+    </insert>
+
+    <update id="updatePark" parameterType="com.example.Model.Park">
+        UPDATE station_parks
+        SET name = #{name},
+            location = #{location},
+            capacity = #{capacity},
+            is_open = #{isOpen}
+        WHERE id = #{id}
+    </update>
+
+    <resultMap id="ParkResultMap" type="com.example.Model.Park">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="location" column="location"/>
+        <result property="capacity" column="capacity"/>
+        <result property="isOpen" column="is_open"/>
+    </resultMap>
+
+    <select id="selectAllParks" resultMap="ParkResultMap">
+        SELECT * FROM station_parks
+    </select>
+
+    <delete id="deletePark" parameterType="Long">
+        DELETE FROM station_parks
+        WHERE id = #{id}
+    </delete>
+</mapper>
