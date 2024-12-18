@@ -16,6 +16,9 @@ public interface ParkMapper {
 
     @Select("SELECT * FROM station_parks")
     @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "location", column = "location"),
             @Result(property = "isOpen", column = "is_open")
     })
     List<Park> selectAllParks();
