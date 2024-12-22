@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = 'http://localhost:8081/parks';
+const API_URL = "http://localhost:8081/parks";
 
-export default {
-    getParks() {
+const parkService = {
+    getAllParks() {
         return axios.get(API_URL);
     },
     addPark(park) {
@@ -16,3 +16,5 @@ export default {
         return axios.delete(`${API_URL}/${id}`);
     },
 };
+
+export default parkService;

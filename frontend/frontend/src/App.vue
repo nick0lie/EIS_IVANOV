@@ -1,19 +1,27 @@
 <template>
   <div id="app">
     <h1>Управление парками</h1>
-    <ParkForm />
-    <ParkList />
+    <ParkForm @refresh="refreshList" ref="form" />
+    <ParkList @edit="editPark" ref="list" />
   </div>
 </template>
 
 <script>
-import ParkList from '@/components/ParkList.vue';
-import ParkForm from '@/components/ParkForm.vue';
+import ParkForm from "@/components/ParkForm.vue";
+import ParkList from "@/components/ParkList.vue";
 
 export default {
   components: {
-    ParkList,
     ParkForm,
+    ParkList,
+  },
+  methods: {
+    refreshList() {
+      this.$refs.list.fetchParks();
+    },
+    editPark(park) {
+      this.$refs.form.editPark(park);
+    },
   },
 };
 </script>

@@ -4,7 +4,8 @@
     <ul>
       <li v-for="park in parks" :key="park.id">
         {{ park.name }} ({{ park.location }}) - Вместимость: {{ park.capacity }}
-        <span v-if="park.is_open">[Открыт]</span>
+        Открыт: {{ park.is_open ? "Да" : "Нет" }}
+        <button @click="$emit('edit', park)">Редактировать</button>
         <button @click="deletePark(park.id)">Удалить</button>
       </li>
     </ul>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-import parkService from '@/services/parkService';
+import parkService from "@/services/parkService";
 
 export default {
   data() {
@@ -22,15 +23,14 @@ export default {
   },
   methods: {
     async fetchParks() {
-      const response = await parkService.getParks();
-      this.parks = response.data;
+      this.parks = (await parkService.getAllParks()).data;
     },
     async deletePark(id) {
       await parkService.deletePark(id);
       this.fetchParks();
     },
   },
-  created() {
+  mounted() {
     this.fetchParks();
   },
 };
