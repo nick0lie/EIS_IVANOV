@@ -1,6 +1,7 @@
 package Lab3_Event.Service;
 
 import Lab3_Event.Annotation.AddedRepairApplication;
+import Lab3_Event.Annotation.EditedAutomobileStatus;
 import Lab3_Event.Annotation.EditedFreightTripApplication;
 import Lab3_Event.Model.*;
 
@@ -18,7 +19,7 @@ public class DriverService {
     private Event<FreightTripApplication> editedFreightTripApplicationEvent;
 
     @Inject
-    @EditedFreightTripApplication
+    @EditedAutomobileStatus
     private Event<Automobile> editedAutomobileStatusEvent;
 
     /**

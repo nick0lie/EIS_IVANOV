@@ -58,7 +58,7 @@ public class EventListener {
      *
      * @param automobile объект Automobile, связанный с обновленным состоянием.
      */
-    public void onAutomobileStatusEdited(@Observes @EditedFreightTripApplication Automobile automobile) {
+    public void onAutomobileStatusEdited(@Observes @EditedAutomobileStatus Automobile automobile) {
         System.out.println("Событие: Состояние автомобиля обновлено.");
         System.out.println("Автомобиль: " + automobile.getMark() + " " + automobile.getModel());
         System.out.println("Новое состояние: " + automobile.getStatus());
